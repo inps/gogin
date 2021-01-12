@@ -30,25 +30,25 @@ func handledb() {
 
 	// Insert square numbers for 0-24 in the database
 	// for i := 0; i < 25; i++ {
-	// 	_, err = stmtIns.Exec(i, (i * i)) // Insert tuples (i, i^2)
+	// 	_, err = stmtIns.Exec(i, ("name" + strconv.Itoa(i))) // Insert tuples (i, i^2)
 	// 	if err != nil {
 	// 		panic(err.Error()) // proper error handling instead of panic in your app
 	// 	}
 	// }
 
-	var squareNum int // we "scan" the result in here
+	var squareNum string // we "scan" the result in here
 
 	// Query the square-number of 13
 	err = stmtOut.QueryRow(13).Scan(&squareNum) // WHERE number = 13
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
-	fmt.Printf("The square number of 1 is: %d", squareNum)
+	fmt.Printf("The square number of 1 is: %s", squareNum)
 
 	// Query another number.. 1 maybe?
 	err = stmtOut.QueryRow(1).Scan(&squareNum) // WHERE number = 1
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
-	fmt.Printf("The square number of 1 is: %d", squareNum)
+	fmt.Printf("The square number of 1 is: %s", squareNum)
 }
