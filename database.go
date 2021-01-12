@@ -3,12 +3,13 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func handledb() {
-	db, err := sql.Open("mysql", "root:passw0rd@/gotest")
+	db, err := sql.Open("mysql", "root:Passw0rd@/gotest")
 	if err != nil {
 		panic(err.Error()) // Just for example purpose. You should use proper error handling instead of panic
 	}
@@ -29,12 +30,12 @@ func handledb() {
 	defer stmtOut.Close()
 
 	// Insert square numbers for 0-24 in the database
-	// for i := 0; i < 25; i++ {
-	// 	_, err = stmtIns.Exec(i, ("name" + strconv.Itoa(i))) // Insert tuples (i, i^2)
-	// 	if err != nil {
-	// 		panic(err.Error()) // proper error handling instead of panic in your app
-	// 	}
-	// }
+	for i := 0; i < 25; i++ {
+		_, err = stmtIns.Exec(i, ("name" + strconv.Itoa(i))) // Insert tuples (i, i^2)
+		if err != nil {
+			panic(err.Error()) // proper error handling instead of panic in your app
+		}
+	}
 
 	var squareNum string // we "scan" the result in here
 
